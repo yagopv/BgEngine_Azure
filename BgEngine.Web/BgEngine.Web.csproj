@@ -168,6 +168,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BgEngine.mdf" />
+    <Content Include="App_Data\BgEngine_log.ldf">
+      <DependentUpon>BgEngine.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\combres.xml">
       <SubType>Designer</SubType>
     </Content>
