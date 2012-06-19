@@ -32,6 +32,9 @@ using BgEngine.Application.DTO;
 using PagedList;
 using BgEngine.Application.ResourceConfiguration;
 
+//Azure
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.StorageClient;
 
 namespace BgEngine.Application.Services
 {
@@ -41,6 +44,7 @@ namespace BgEngine.Application.Services
         IAlbumRepository AlbumRepository;
         IVideoRepository VideoRepository;
         ITagRepository TagRepository;
+        CloudStorageAccount StorageAccount;
         /// <summary>
         /// ctor
         /// </summary>
@@ -50,6 +54,8 @@ namespace BgEngine.Application.Services
             this.AlbumRepository = albumrepository;
             this.VideoRepository = videorepository;
             this.TagRepository = tagrepository;
+            // Parse the connection string to accessing Storage account defined for BgEngine
+            StorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
         }
         /// <summary>
         /// Add new Image to database
@@ -72,12 +78,11 @@ namespace BgEngine.Application.Services
             return ImageRepository.GetImages(orderByExpression, searchstring);
         }
         /// <summary>
-        /// Detete an Image from Database and remove it from server
+        /// Delete an Image from Database and remove it from Cloud Storage
         /// </summary>
         /// <param name="id">Identity of the Image to Delete</param>
-        /// <param name="server">Server base</param>
         /// <returns>If deletion is completed</returns>
-        public bool DeleteImageFromDatabaseAndServer(int id, HttpServerUtilityBase server)
+        public bool DeleteImageFromDatabaseAndStorage(int id)
         {
             Image image = ImageRepository.GetByID(id);
             try
@@ -89,10 +94,8 @@ namespace BgEngine.Application.Services
             {
                 return false;
             }
-            string path = server.MapPath(image.Path);
-            string thpath = server.MapPath(image.ThumbnailPath);
-            bool filesdeleted = DeleteImageFromServer(path, thpath);
-            if (!filesdeleted)
+            bool imagedeleted = DeleteImageFromStorage(image.Path, image.ThumbnailPath);
+            if (!imagedeleted)
             {
                 return false;
             }
@@ -103,22 +106,26 @@ namespace BgEngine.Application.Services
         /// </summary>
         /// <param name="albumid">Identity for the Album</param>
         /// <param name="deleterelated">If delete all related images or keep them</param>
-        /// <param name="server">Server base</param>
-        public void DeleteAlbum(int albumid, bool deleterelated, HttpServerUtilityBase server)
+        public void DeleteAlbum(int albumid, bool deleterelated)
         {
             Album album = AlbumRepository.GetByID(albumid);
             foreach (Image im in album.Images.ToList())
             {
                 if (deleterelated == true)
                 {
-                    DeleteImageFromServer(server.MapPath(im.Path), server.MapPath(im.ThumbnailPath));
-                    ImageRepository.Delete(im.ImageId);
+                    bool imagedeleted = DeleteImageFromStorage(im.Path, im.ThumbnailPath);
+                    if (imagedeleted)
+                    {
+                        ImageRepository.Delete(im.ImageId);
+                    }
                 }
                 else
                 {
                     im.AlbumId = null;
                 }
             }
+            CloudBlobContainer cloudblobcontainer = GetContainerForAlbum(albumid);
+            cloudblobcontainer.Delete();
             ImageRepository.UnitOfWork.Commit();
             AlbumRepository.Delete(albumid);
             AlbumRepository.UnitOfWork.Commit();
@@ -130,7 +137,7 @@ namespace BgEngine.Application.Services
         /// <param name="albumid">Album to get</param>
         /// <param name="url">url of the image</param>
         /// <returns>List of Images</returns>
-        public List<ImageDTO> BuildGalleriaForAlbum(int albumid, Func<string,string> url)
+        public List<ImageDTO> BuildGalleriaForAlbum(int albumid)
         {
             IEnumerable<Image> images = ImageRepository.Get(i => i.AlbumId == albumid);
             List<ImageDTO> imagesJSON = new List<ImageDTO>();
@@ -138,9 +145,9 @@ namespace BgEngine.Application.Services
             {
                 ImageDTO imageJSON = new ImageDTO
                 {
-                    image = url(image.Path),
-                    thumb = url(image.ThumbnailPath),
-                    big = url(image.Path),
+                    image = image.Path,
+                    thumb = image.ThumbnailPath,
+                    big = image.Path,
                     title = image.Name,
                     description = image.Description
                 };
@@ -163,14 +170,13 @@ namespace BgEngine.Application.Services
             return imagesJSON;
         }
         /// <summary>
-        /// Upload a list of Images to the server
+        /// Upload a list of Images to the Storage
         /// </summary>
         /// <param name="files">Files to Upload</param>
-        /// <param name="server">Server base</param>
         /// <param name="request">Request base</param>
         /// <param name="albumid">The album of the Images</param>
         /// <returns>Files uploaded</returns>
-        public object UploadFileToServer(ICollection<HttpPostedFileBase> files, HttpServerUtilityBase server, HttpRequestBase request, int? albumid)
+        public object UploadFileToStorage(ICollection<HttpPostedFileBase> files, HttpRequestBase request, int? albumid)
         {
             int fileUploadedCount = 0;
             string[] filesUploaded = new string[request.Files.Count];
@@ -201,24 +207,30 @@ namespace BgEngine.Application.Services
                         {
                             album = AlbumRepository.GetByID(albumid);
                         }
-                        CheckDirectoryForAlbum(albumid, server);
+                        CloudBlobContainer container = GetContainerForAlbum(albumid);
                         WebImage image = new WebImage(file.InputStream);
-                        imagepath = "~/Content/Images/" + albumid + "/" + unique + "_" + file.FileName;
                         image.Resize(1024, 768, preserveAspectRatio: true, preventEnlarge: true)
-                             .Crop(1, 1)
-                             .Save(server.MapPath(imagepath));
-                        thumbnailpath = "~/Content/Images/Thumbnails/" + albumid + "/" + unique + "_" + file.FileName;
+                             .Crop(1, 1);
+                        CloudBlob blob = container.GetBlobReference(unique + "_" + file.FileName);
+                        blob.UploadByteArray(image.GetBytes());
+                        imagepath = blob.Uri.AbsoluteUri;
+
                         image.Resize(Int32.Parse(BgResources.Media_ThumbnailWidth), Int32.Parse(BgResources.Media_ThumbnailHeight), preserveAspectRatio: true, preventEnlarge: true)
-                             .Crop(1, 1)
-                             .Save(server.MapPath(thumbnailpath));
-                        ImageRepository.Insert(new Image { Name= file.FileName, Path = imagepath, ThumbnailPath = thumbnailpath, Album = album, DateCreated = DateTime.Now, FileName = file.FileName });
+                             .Crop(1, 1);
+                        CloudBlob thblob = container.GetBlobReference(unique + "_th" + file.FileName);
+                        thblob.UploadByteArray(image.GetBytes());
+                        thumbnailpath = thblob.Uri.AbsoluteUri;
+
+                        ImageRepository.Insert(new Image { Name = file.FileName, Path = imagepath, ThumbnailPath = thumbnailpath, Album = album, DateCreated = DateTime.Now, FileName = file.FileName });
                         ImageRepository.UnitOfWork.Commit();
                         fileUploadedCount++;
                         filesUploaded[i] = file.FileName;
                     }
                     else
                     {
-                        file.SaveAs(server.MapPath("~/Content/Files/" + unique + "_" + file.FileName));
+                        CloudBlobContainer container = GetContainerForAlbum(null);
+                        CloudBlob blobfile = container.GetBlobReference(unique + "_" + file.FileName);
+                        blobfile.UploadFromStream(file.InputStream);
                         fileUploadedCount++;
                         filesUploaded[i] = file.FileName;
                     }
@@ -233,12 +245,11 @@ namespace BgEngine.Application.Services
             return result;
         }
         /// <summary>
-        /// Upload one image to album and server
+        /// Upload one image to album and Storage
         /// </summary>
         /// <param name="file">The file to upload</param>
-        /// <param name="server">Server base</param>
         /// <param name="albumid">The Album Identity</param>
-        public void UploadFileToAlbum(HttpPostedFileBase file, HttpServerUtilityBase server, int? albumid)
+        public void UploadFileToAlbum(HttpPostedFileBase file, int? albumid)
         {
             if ((file != null) && (file.ContentLength > 0))
             {
@@ -264,22 +275,28 @@ namespace BgEngine.Application.Services
                     {
                         album = AlbumRepository.GetByID(albumid);
                     }
-                    CheckDirectoryForAlbum(albumid, server);
+                    CloudBlobContainer container = GetContainerForAlbum(albumid);
                     WebImage image = new WebImage(file.InputStream);
-                    imagepath = "~/Content/Images/" + albumid + "/" + unique + "_" + file.FileName;
                     image.Resize(1024, 768, preserveAspectRatio: true, preventEnlarge: true)
-                         .Crop(1, 1)
-                         .Save(server.MapPath(imagepath));
-                    thumbnailpath = "~/Content/Images/Thumbnails/" + albumid + "/" + unique + "_" + file.FileName;
+                         .Crop(1, 1);
+                    CloudBlob blob = container.GetBlobReference(unique + "_" + file.FileName);
+                    blob.UploadByteArray(image.GetBytes());
+                    imagepath = blob.Uri.AbsoluteUri;
+
                     image.Resize(Int32.Parse(BgResources.Media_ThumbnailWidth), Int32.Parse(BgResources.Media_ThumbnailHeight), preserveAspectRatio: true, preventEnlarge: true)
-                         .Crop(1, 1)
-                         .Save(server.MapPath(thumbnailpath));
+                         .Crop(1, 1);
+                    CloudBlob thblob = container.GetBlobReference(unique + "_th" + file.FileName);
+                    thblob.UploadByteArray(image.GetBytes());
+                    thumbnailpath = thblob.Uri.AbsoluteUri;
+
                     ImageRepository.Insert(new Image { Name = file.FileName, Path = imagepath, ThumbnailPath = thumbnailpath, Album = album, DateCreated = DateTime.Now, FileName = file.FileName });
                     ImageRepository.UnitOfWork.Commit();
                 }
                 else
                 {
-                    file.SaveAs(server.MapPath("~/Content/Files/" + unique + "_" + file.FileName));
+                    CloudBlobContainer container = GetContainerForAlbum(null);
+                    CloudBlob blobfile = container.GetBlobReference(unique + "_" + file.FileName);
+                    blobfile.UploadFromStream(file.InputStream);
                 }
             }
         }
@@ -287,19 +304,27 @@ namespace BgEngine.Application.Services
         /// Check if the images directories exists and create them if necessary
         /// </summary>
         /// <param name="albumid"></param>
-        private void CheckDirectoryForAlbum(int? albumid, HttpServerUtilityBase server)
+        private CloudBlobContainer GetContainerForAlbum(int? albumid)
         {
-            if (albumid != null)
+            CloudBlobClient blobClient = StorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container;
+            // Retrieve a reference to a container 
+            if (albumid == null)
             {
-                if (!Directory.Exists(server.MapPath("~/Content/Images/" + albumid)))
-                {
-                    Directory.CreateDirectory(server.MapPath("~/Content/Images/" + albumid));
-                }
-                if (!Directory.Exists(server.MapPath("~/Content/Images/Thumbnails/" + albumid)))
-                {
-                    Directory.CreateDirectory(server.MapPath("~/Content/Images/Thumbnails/" + albumid));
-                }
+                container = blobClient.GetContainerReference("files");
             }
+            else
+            {
+                container = blobClient.GetContainerReference("album-" + albumid.ToString());
+            }     
+
+            // Create the container if it doesn't already exist. If created set access to public
+            if (container.CreateIfNotExist())
+            {
+                container.SetPermissions(
+                    new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            }
+            return container;
         }
         /// <summary>
         /// Get Videos for premium or normal user
@@ -319,7 +344,7 @@ namespace BgEngine.Application.Services
                 else
                 {
                     return VideoRepository.Get(v => v.Name.Contains(searchstring) || v.Description.Contains(searchstring), v => v.OrderBy(o => o.DateCreated), null).ToPagedList(pageindex, Int32.Parse(BgResources.Pager_SearchVideosPerPage));
-                }                
+                }
             }
             else
             {
@@ -330,7 +355,7 @@ namespace BgEngine.Application.Services
                 else
                 {
                     return VideoRepository.Get(v => v.IsPublic && (v.Name.Contains(searchstring) || v.Description.Contains(searchstring)), v => v.OrderBy(o => o.DateCreated), null).ToPagedList(pageindex, Int32.Parse(BgResources.Pager_SearchVideosPerPage));
-                }                                
+                }
             }
         }
         /// <summary>
@@ -390,42 +415,26 @@ namespace BgEngine.Application.Services
             }
         }
         /// <summary>
-        /// Private method for Image Deletion in Server
+        /// Private method for Image Deletion in Storage
         /// </summary>
         /// <param name="path">Path of Image</param>
         /// <param name="thumbnailpath">Thumb path of Image</param>
         /// <returns></returns>
-        private bool DeleteImageFromServer(string path, string thumbnailpath)
+        private bool DeleteImageFromStorage(string path, string thumbnailpath)
         {
-            FileInfo fi1 = new FileInfo(path);
-            if (fi1.Exists)
-            {
-                fi1.Delete();
-            }
-            else
-            {
-                return false;
-            }
-            FileInfo fi2 = new FileInfo(thumbnailpath);
-            if (fi2.Exists)
-            {
-                fi2.Delete();
-            }
-            else
-            {
-                return false;
-            }
-            return true;
+            CloudBlobClient blobClient = StorageAccount.CreateCloudBlobClient();
+            CloudBlob blobpath = blobClient.GetBlobReference(path);
+            CloudBlob blobthpath = blobClient.GetBlobReference(thumbnailpath);
+            return blobpath.DeleteIfExists() && blobthpath.DeleteIfExists();
         }
         /// <summary>
         /// Get al List of paths for album´s download purposes 
         /// </summary>
         /// <param name="id">Album identity</param>
-        /// <param name="server">Server base</param>
         /// <returns>The list of urls</returns>
-        public string[] GetImagePathsForDownload(int id, HttpServerUtilityBase server)
+        public string[] GetImagePathsForDownload(int id)
         {
-            return ImageRepository.Get(im => im.AlbumId == id).Select(im => server.MapPath(im.Path)).ToArray();
+            return ImageRepository.Get(im => im.AlbumId == id).Select(im => im.Path).ToArray();
         }
 
         /// <summary>
@@ -446,7 +455,7 @@ namespace BgEngine.Application.Services
                 {
                     if (!String.IsNullOrEmpty(tag))
                     {
-                        Tag tagtoselect = TagRepository.Get(t => t.TagName == tag,null,"Videos").FirstOrDefault();
+                        Tag tagtoselect = TagRepository.Get(t => t.TagName == tag, null, "Videos").FirstOrDefault();
                         if (tagtoselect.Videos != null)
                         {
                             return tagtoselect.Videos.OrderByDescending(v => v.DateCreated).Take(howmany);
@@ -472,7 +481,7 @@ namespace BgEngine.Application.Services
                         }
                     }
                     return VideoRepository.Get(v => v.IsPublic, i => i.OrderByDescending(v => v.DateCreated), null).Take(howmany);
-                }               
+                }
             }
         }
         /// <summary>
@@ -496,6 +505,6 @@ namespace BgEngine.Application.Services
             VideoRepository.Update(video);
             VideoRepository.AddTagsToVideo(video, tags);
             VideoRepository.UnitOfWork.Commit(); ;
-        }				
+        }
     }
 }

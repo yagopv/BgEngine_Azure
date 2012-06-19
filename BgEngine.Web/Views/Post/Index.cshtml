@@ -124,11 +124,11 @@
 					     {
 						    if (item.Image.ThumbnailPath != String.Empty)   
 						    {
-							    <img class="image ui-helper-image-100-100" src="@Url.Content(item.Image.ThumbnailPath)" />
+							    <img class="image ui-helper-image-100-100" src="@item.Image.ThumbnailPath" />
 						    }
 						    else if (item.Image.Path != String.Empty)  
 						    {
-							    <img class="image ui-helper-image-100-100" src="@Url.Content(item.Image.Path)" />
+							    <img class="image ui-helper-image-100-100" src="@item.Image.Path" />
 						    } 
 						    else  
 						    {

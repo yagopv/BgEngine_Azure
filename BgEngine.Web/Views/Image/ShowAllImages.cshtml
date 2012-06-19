@@ -59,7 +59,7 @@
 				@foreach (var modelitem in Model)
 				{               
 					<li>
-						<img id="@modelitem.ImageId" title="@modelitem.FileName" class="tooltip image" src="@Url.Content(modelitem.ThumbnailPath)" />
+						<img id="@modelitem.ImageId" title="@modelitem.FileName" class="tooltip image" src="@modelitem.ThumbnailPath" />
 					</li> 
 				}
 			</ul>

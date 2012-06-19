@@ -36,13 +36,13 @@ namespace BgEngine.Application.Services
     {
         void AddImage(Image entity);
         IEnumerable<Image> SearchForImagesByParam<TKey>(Expression<Func<BgEngine.Domain.EntityModel.Image, TKey>> orderByExpression, string searchstring = "");
-        void DeleteAlbum(int albumid, bool deleterelated, HttpServerUtilityBase server);
-        string[] GetImagePathsForDownload(int id, HttpServerUtilityBase server);
-        bool DeleteImageFromDatabaseAndServer(int id, HttpServerUtilityBase server);
-        List<ImageDTO> BuildGalleriaForAlbum(int albumid, Func<string, string> url);
+        void DeleteAlbum(int albumid, bool deleterelated);
+        string[] GetImagePathsForDownload(int id);
+        bool DeleteImageFromDatabaseAndStorage(int id);
+        List<ImageDTO> BuildGalleriaForAlbum(int albumid);
         List<StringValueDTO> BuildImageAutocompleteSuggestions(string searchstring);
-        object UploadFileToServer(ICollection<HttpPostedFileBase> files, HttpServerUtilityBase server, HttpRequestBase request, int? albumid);
-        void UploadFileToAlbum(HttpPostedFileBase file, HttpServerUtilityBase server, int? albumid);
+        object UploadFileToStorage(ICollection<HttpPostedFileBase> files, HttpRequestBase request, int? albumid);
+        void UploadFileToAlbum(HttpPostedFileBase file, int? albumid);
         IPagedList<Video> FindVideosForRole(bool ispremium, int pageindex, string searchstring);
         List<StringValueDTO> BuildVideoAutocompleteSuggestions(string searchstring, bool ispremium);
         IEnumerable<Image> FindImagesForRole(bool ispremium);

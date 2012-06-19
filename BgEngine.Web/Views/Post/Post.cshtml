@@ -69,11 +69,11 @@
                 {
                     if (Model.Image.ThumbnailPath != String.Empty)
                     {
-                    <img src="@Url.Content(Model.Image.ThumbnailPath)" class="ui-helper-float-left" />
+                    <img src="@Model.Image.ThumbnailPath" class="ui-helper-float-left" />
                     }
                     else if (Model.Image.Path != String.Empty)
                     {
-                    <img src="@Url.Content(Model.Image.Path)" class="ui-helper-float-left" />
+                    <img src="@Model.Image.Path" class="ui-helper-float-left" />
                     }
                     else
                     {

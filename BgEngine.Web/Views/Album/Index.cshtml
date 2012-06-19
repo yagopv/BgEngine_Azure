@@ -46,13 +46,13 @@
             if (image.ThumbnailPath != String.Empty)
             {
                 <div class="album-image-container">
-                    <img class="album-image" src="@Url.Content(image.ThumbnailPath)" />
+                    <img class="album-image" src="@image.ThumbnailPath" />
                 </div>
             }
             else if (image.Path != String.Empty)
             {
                 <div class="album-image-container">
-                    <img class="album-image" src="@Url.Content(image.Path)" />
+                    <img class="album-image" src="@image.Path" />
                 </div>
             }
             else

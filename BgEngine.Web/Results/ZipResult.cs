@@ -52,13 +52,6 @@ namespace BgEngine.Web.Results
 
         public override void ExecuteResult(ControllerContext context)
         {
-            //long length = 0;
-            //foreach (string file in _files)
-            //{
-            //    FileInfo fi = new FileInfo(file);
-            //    length = length + fi.Length;
-            //}
-
             using (ZipFile zf = new ZipFile())
             {
                 zf.CompressionMethod = CompressionMethod.None;

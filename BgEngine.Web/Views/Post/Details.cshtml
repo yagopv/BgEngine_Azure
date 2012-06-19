@@ -45,11 +45,11 @@
 		<div>
 			@if ((Model.Image != null) && (!String.IsNullOrEmpty(Model.Image.ThumbnailPath)))
 			{                
-			   <img src="@Url.Content(Model.Image.ThumbnailPath)" class="ui-helper-thumbnail"/>
+			   <img src="@Model.Image.ThumbnailPath" class="ui-helper-thumbnail"/>
             }
             else if ((Model.Image != null) && (!String.IsNullOrEmpty(Model.Image.Path)))
 		    {   
-                <img src="@Url.Content(Model.Image.Path)" class="ui-helper-thumbnail"/>                 
+                <img src="@Model.Image.Path" class="ui-helper-thumbnail"/>                 
             }
             else
             {

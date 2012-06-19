@@ -49,7 +49,7 @@ namespace BgEngine.Controllers
         [Authorize(Roles = "Admin")]
         [EnableCompression]
         public ActionResult Index()
-        {
+        {            
             return View(AlbumServices.FindAllEntities(null,null,null));
         }
         /// <summary>
@@ -106,7 +106,7 @@ namespace BgEngine.Controllers
         [HandleError(ExceptionType = typeof(HttpAntiForgeryException), View = "AntiForgeryError")]
         public ActionResult DeleteConfirmed(int id, bool deleteRelated)
         {
-            MediaServices.DeleteAlbum(id, deleteRelated, HttpContext.Server);
+            MediaServices.DeleteAlbum(id, deleteRelated);
             return RedirectToAction("Index");
         }
         /// <summary>
@@ -164,7 +164,7 @@ namespace BgEngine.Controllers
         /// <returns>The zip file with all the images in Album</returns>
         public ActionResult DownloadAlbum(int id)
         {
-            ZipResult result = new ZipResult(MediaServices.GetImagePathsForDownload(id, HttpContext.Server));
+            ZipResult result = new ZipResult(MediaServices.GetImagePathsForDownload(id));
             Album album = AlbumServices.FindAllEntities(a => a.AlbumId == id,null,null).FirstOrDefault();
             if (album != null)
             {

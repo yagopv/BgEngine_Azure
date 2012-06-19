@@ -40,7 +40,7 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>@String.Format(Resources.AppMessages.Localization_Edit, Model.Name)</legend>
-        <img class="ui-helper-margin-top-bottom" src="@Url.Content(Model.ThumbnailPath)"  />
+        <img class="ui-helper-margin-top-bottom" src="@Model.ThumbnailPath"  />
 		<table class="table-template">					
 			<tr>
 				<td>

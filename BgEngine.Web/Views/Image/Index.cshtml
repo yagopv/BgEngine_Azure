@@ -270,11 +270,11 @@
             <div class="image-container">
                 @if (item.ThumbnailPath != String.Empty)
                 {                
-                    <img class="album-image" src="@Url.Content(item.ThumbnailPath)" />                
+                    <img class="album-image" src="@item.ThumbnailPath" />                
                 }
                 else if (item.Path != String.Empty)
                 {                    
-                    <img class="album-image" src="@Url.Content(item.Path)" />
+                    <img class="album-image" src="@item.Path" />
                 }
                 else
                 {
@@ -282,7 +282,7 @@
                 }
             </div>
             @Html.RouteLink(Resources.AppMessages.Edit, "Default", new { controller = "Image", action = "Edit", id = item.ImageId }, new { id = item.ImageId, @class = "edit ui-icon ui-icon-pencil" })
-            <a href="@Url.Content(item.Path)" title="View larger image" class="ui-icon ui-icon-zoomin">@Resources.AppMessages.View_Detail</a>
+            <a href="@item.Path" title="View larger image" class="ui-icon ui-icon-zoomin">@Resources.AppMessages.View_Detail</a>
             <a href="link/to/trash/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-trash">@Resources.AppMessages.Delete</a>
         </li>
         }

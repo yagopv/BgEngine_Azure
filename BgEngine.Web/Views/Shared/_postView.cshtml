@@ -24,11 +24,11 @@
 {
 	if (Model.Image.ThumbnailPath != String.Empty)
 	{
-	<img src="@Url.Content(Model.Image.ThumbnailPath)" />
+	<img src="@Model.Image.ThumbnailPath" />
 	}
 	else if (Model.Image.Path != String.Empty)
 	{
-	<img src="@Url.Content(Model.Image.Path)" />
+	<img src="@Model.Image.Path" />
 	}
 	else
 	{

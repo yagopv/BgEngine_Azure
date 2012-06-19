@@ -126,7 +126,7 @@ namespace BgEngine.Controllers
         {
             if (ModelState.IsValid)
             {
-                return MediaServices.DeleteImageFromDatabaseAndServer(id, HttpContext.Server)
+                return MediaServices.DeleteImageFromDatabaseAndStorage(id)
                        ?
                        Json(new { result = "ok" })
                        :
@@ -139,7 +139,7 @@ namespace BgEngine.Controllers
         // GET: /Image/Galleria
         public JsonResult GetGalleriaJson(int id)
         {
-            return Json(MediaServices.BuildGalleriaForAlbum(id, url => Url.Content(url)), JsonRequestBehavior.AllowGet);
+            return Json(MediaServices.BuildGalleriaForAlbum(id), JsonRequestBehavior.AllowGet);
         }
 
         //
