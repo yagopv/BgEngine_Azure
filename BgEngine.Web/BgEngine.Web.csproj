@@ -273,21 +273,6 @@
     <Content Include="Content\themes\Cupertino\images\ui-icons_72a7cf_256x240.png" />
     <Content Include="Content\themes\Cupertino\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\Cupertino\jquery-ui-1.8.16.custom.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.all.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.base.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.button.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.core.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.slider.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.theme.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.tooltip.css" />
     <Content Include="Content\themes\Rocket\images\ui-bg_diagonals-thick_50_00a6dd_40x40.png" />
     <Content Include="Content\themes\Rocket\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\Rocket\images\ui-bg_flat_100_f1f1f1_40x100.png" />
@@ -337,24 +322,7 @@
     <Content Include="Content\shCore.css" />
     <Content Include="Content\shThemeDefault.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\themes\Cupertino\jquery.ui.selectmenu.css" />
     <Content Include="Content\themes\UI Lightness\jquery-ui-1.8.16.custom.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.all.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.base.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.button.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.core.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.selectmenu.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.slider.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.theme.css" />
-    <Content Include="Content\themes\UI Lightness\jquery.ui.tooltip.css" />
     <Content Include="Content\tipTip.css" />
     <Content Include="Scripts\galleria\galleria-1.2.7.js" />
     <Content Include="Scripts\galleria\galleria-1.2.7.min.js" />
@@ -720,6 +688,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
