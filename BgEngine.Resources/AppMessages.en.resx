@@ -280,7 +280,7 @@
     <value>Post</value>
   </data>
   <data name="Post_Code" xml:space="preserve">
-    <value>Code</value>
+    <value>Url code</value>
   </data>
   <data name="Post_Code_Prompt" xml:space="preserve">
     <value>Enter the code to access the post by url</value>
@@ -853,7 +853,7 @@
     <value>The code already exists</value>
   </data>
   <data name="Selected_To_Upload" xml:space="preserve">
-    <value>If selected files are images, they will be stored in the common album "Uploads". Another type of files will be uploaded into "Files" folder on the server</value>
+    <value>The images and files uploaded are going to be stored in your Azure Storage account</value>
   </data>
   <data name="Error_User_With_Comments" xml:space="preserve">
     <value>The user should not have any related comment</value>
@@ -1096,7 +1096,7 @@
     <value>Post has no comments yet</value>
   </data>
   <data name="Home_Contact" xml:space="preserve">
-    <value>Contact with us</value>
+    <value>Contact us</value>
   </data>
   <data name="Contact_Message" xml:space="preserve">
     <value>Message</value>
@@ -1123,7 +1123,7 @@
     <value>An error was produced trying to delete images. The images with red border are used in somewhere in this site.</value>
   </data>
   <data name="Rss_Tooltip" xml:space="preserve">
-    <value>Subscribe RSS feed ang get latest post being published</value>
+    <value>Subscribe to our RSS feed to receive our latest posts automatically</value>
   </data>
   <data name="Tweets_Category" xml:space="preserve">
     <value>Tweets in this category</value>
@@ -1220,5 +1220,8 @@
   </data>
   <data name="AnonymousUser_Web_Prompt" xml:space="preserve">
     <value>Enter your web if you have any</value>
+  </data>
+  <data name="InvalidUrlCode" xml:space="preserve">
+    <value>Invalid code (Accepted values:  A-Z, a-z, 0-9, -, _)</value>
   </data>
 </root>

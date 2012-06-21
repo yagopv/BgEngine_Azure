@@ -199,7 +199,7 @@
     <value>Imagen</value>
   </data>
   <data name="Post_Code" xml:space="preserve">
-    <value>Código</value>
+    <value>Código Url</value>
   </data>
   <data name="Post_Code_Prompt" xml:space="preserve">
     <value>Introduce un valor para poder acceder vía url</value>
@@ -856,7 +856,7 @@
     <value>El Código ya existe</value>
   </data>
   <data name="Selected_To_Upload" xml:space="preserve">
-    <value>Loas archivos seleccionados se subirán a la carpeta común "Uploads"</value>
+    <value>Las imágenes y archivos cargados se van a almacenar en tu cuenta de Azure Storage</value>
   </data>
   <data name="Error_User_With_Comments" xml:space="preserve">
     <value>No se puede borrar un usuario con Comentarios asociados</value>
@@ -1226,5 +1226,8 @@
   </data>
   <data name="AnonymousUser_Web_Prompt" xml:space="preserve">
     <value>Introduce tu sitio web si tienes uno</value>
+  </data>
+  <data name="InvalidUrlCode" xml:space="preserve">
+    <value>Código no válido (Valores aceptaddos:  A-Z, a-z, 0-9, -, _)</value>
   </data>
 </root>

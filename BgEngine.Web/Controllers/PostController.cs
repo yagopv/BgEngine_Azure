@@ -270,7 +270,7 @@ namespace BgEngine.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [EnableCompression]
+        //[EnableCompression]
         public ActionResult Admin()
         {            
             return View();
