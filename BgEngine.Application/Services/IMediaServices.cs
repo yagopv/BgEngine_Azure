@@ -37,7 +37,6 @@ namespace BgEngine.Application.Services
         void AddImage(Image entity);
         IEnumerable<Image> SearchForImagesByParam<TKey>(Expression<Func<BgEngine.Domain.EntityModel.Image, TKey>> orderByExpression, string searchstring = "");
         void DeleteAlbum(int albumid, bool deleterelated);
-        string[] GetImagePathsForDownload(int id);
         bool DeleteImageFromDatabaseAndStorage(int id);
         List<ImageDTO> BuildGalleriaForAlbum(int albumid);
         List<StringValueDTO> BuildImageAutocompleteSuggestions(string searchstring);

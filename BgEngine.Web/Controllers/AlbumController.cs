@@ -157,20 +157,5 @@ namespace BgEngine.Controllers
                 return RedirectToRoute("Default", new { controller = "Account", action = "LogOn" });
             }
         }
-        /// <summary>
-        /// Download an Album converting a list of Images in a zip file
-        /// </summary>
-        /// <param name="id">The identity of the Album</param>
-        /// <returns>The zip file with all the images in Album</returns>
-        public ActionResult DownloadAlbum(int id)
-        {
-            ZipResult result = new ZipResult(MediaServices.GetImagePathsForDownload(id));
-            Album album = AlbumServices.FindAllEntities(a => a.AlbumId == id,null,null).FirstOrDefault();
-            if (album != null)
-            {
-                result.FileName = album.Name.Replace(" ","_") + ".zip";
-            }
-            return result;
-        }
     }
 }

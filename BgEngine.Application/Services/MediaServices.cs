@@ -428,15 +428,6 @@ namespace BgEngine.Application.Services
             CloudBlob blobthpath = blobClient.GetBlobReference(thumbnailpath);
             return blobpath.DeleteIfExists() && blobthpath.DeleteIfExists();
         }
-        /// <summary>
-        /// Get al List of paths for album´s download purposes 
-        /// </summary>
-        /// <param name="id">Album identity</param>
-        /// <returns>The list of urls</returns>
-        public string[] GetImagePathsForDownload(int id)
-        {
-            return ImageRepository.Get(im => im.AlbumId == id).Select(im => im.Path).ToArray();
-        }
 
         /// <summary>
         /// Get latest videos for home page

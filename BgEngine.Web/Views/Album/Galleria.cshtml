@@ -60,12 +60,5 @@ else
 }
 
     <div id="galleria-options" class="ui-helper-margin ui-helper-margin-top-bottom">
-        @if (Model.Images.Any() && (CodeFirstSecurity.IsAuthenticated))
-        {
-            if ((CodeFirstRoleServices.IsUserInRole(CodeFirstSecurity.CurrentUserName, BgResources.Security_AdminRole)) || (CodeFirstRoleServices.IsUserInRole(CodeFirstSecurity.CurrentUserName, BgResources.Security_PremiumRole)))
-            { 
-                @Html.RouteLink(String.Format(Resources.AppMessages.Album_Download, Model.Name), new { controller = "Album", action = "DownloadAlbum", id = Model.AlbumId }, new { @class = "bg-button-save" })
-            }         
-        }
         @Html.RouteLink(Resources.AppMessages.Back_to_List, new { controller = "Home", action = "Galeria" }, new { @class = "bg-button-back" })        
     </div>
