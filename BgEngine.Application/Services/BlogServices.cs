@@ -320,22 +320,29 @@ namespace BgEngine.Application.Services
 
         public Post FindPost(string postcode)
         {
-            Post post = PostRepository.Get(p => p.Code == postcode, p => p.OrderBy(o => o.DateCreated), "Category,User,Tags,Ratings,Image,Comments").Single();
+            Post post = PostRepository.Get(p => p.Code == postcode, p => p.OrderBy(o => o.DateCreated), "Category,User,Tags,Ratings,Image,Comments").SingleOrDefault();
+            if (post == null)
+            {
+                return null;
+            }
             post.IncreaseVisitCounter();
             PostRepository.Update(post);
             PostRepository.UnitOfWork.Commit();
             return post;
         }
 
-        public Post FindPost(int  postid)
+        public Post FindPost(int postid)
         {
-            Post post = PostRepository.Get(p => p.PostId == postid, p => p.OrderBy(o => o.DateCreated), "Category,User,Tags,Ratings,Image,Comments").Single();
+            Post post = PostRepository.Get(p => p.PostId == postid, p => p.OrderBy(o => o.DateCreated), "Category,User,Tags,Ratings,Image,Comments").SingleOrDefault();
+            if (post == null)
+            {
+                return null;
+            }
             post.IncreaseVisitCounter();
             PostRepository.Update(post);
             PostRepository.UnitOfWork.Commit();
             return post;
-        }
-        /// <summary>
+        }        /// <summary>
         /// Get Posts for the RSS feed
         /// </summary>
         /// <param name="ispremium">If the user is premium</param>
