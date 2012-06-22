@@ -54,18 +54,6 @@
 		</tr>
 	</table>
 	@using (Html.BeginForm()) {
-	    <table class="table-template">
-	    	<tr>
-			    <td>
-				    <strong>@Html.Label(@Resources.AppMessages.DeleteRelatedImages)</strong> 
-			    </td>
-			    <td>
-				    <div class="display-field">
-				    	@Html.CheckBox("deleteRelated")
-			    	</div>
-		    	</td>
-	    	</tr>
-        </table>
 		<p>
 			<input type="submit" value="Delete" />
 			@Html.RouteLink(Resources.AppMessages.Back_to_List, new { controller = "Album", action = "Index" }, new { @class = "bg-button-back" })

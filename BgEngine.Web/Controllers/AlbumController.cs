@@ -104,9 +104,9 @@ namespace BgEngine.Controllers
         [EnableCompression]
         [ValidateAntiForgeryToken]
         [HandleError(ExceptionType = typeof(HttpAntiForgeryException), View = "AntiForgeryError")]
-        public ActionResult DeleteConfirmed(int id, bool deleteRelated)
+        public ActionResult DeleteConfirmed(int id)
         {
-            MediaServices.DeleteAlbum(id, deleteRelated);
+            MediaServices.DeleteAlbum(id, true);
             return RedirectToAction("Index");
         }
         /// <summary>
