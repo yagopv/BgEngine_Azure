@@ -27,7 +27,7 @@ using System.ServiceModel.Syndication;
 
 using BgEngine.Domain.EntityModel;
 using BgEngine.Security.Services;
-using BgEngine.Domain.Filters;
+using BgEngine.Filters;
 using BgEngine.Application;
 using BgEngine.Application.Services;
 using BgEngine.Application.ResourceConfiguration;
@@ -270,7 +270,7 @@ namespace BgEngine.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        //[EnableCompression]
+        [EnableCompression]
         public ActionResult Admin()
         {            
             return View();
@@ -281,7 +281,15 @@ namespace BgEngine.Controllers
         [EnableCompression]
         public ActionResult GetPostByCode(string id)
         {
+            if (id == null)
+            {
+                return new NotFoundMvc.NotFoundViewResult();
+            }
             Post post = BlogServices.FindPost(id);
+            if (post == null)
+            {
+                return new NotFoundMvc.NotFoundViewResult();
+            }
             ViewBag.MetaDescription = post.Description;
             if ((post.IsPublic) || (CodeFirstRoleServices.IsUserInRole(CodeFirstSecurity.IsAuthenticated ? CodeFirstSecurity.CurrentUserName : " ", BgResources.Security_PremiumRole)))
             {
@@ -297,9 +305,14 @@ namespace BgEngine.Controllers
         //
         // GET: /Post/GetPostById/id
         [EnableCompression]
+        [HandleError(View = "MissedArgumentError", ExceptionType = typeof(ArgumentException))]
         public ActionResult GetPostById(int id)
         {
             Post post = BlogServices.FindPost(id);
+            if (post == null)
+            {
+                return new NotFoundMvc.NotFoundViewResult();
+            }
             ViewBag.MetaDescription = post.Description;
             if ((post.IsPublic) || (CodeFirstRoleServices.IsUserInRole(CodeFirstSecurity.IsAuthenticated ? CodeFirstSecurity.CurrentUserName : " ", BgResources.Security_PremiumRole)))
             {

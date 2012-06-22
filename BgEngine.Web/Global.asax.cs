@@ -26,10 +26,10 @@ using Microsoft.Web.Helpers;
 
 using BgEngine.Application.Services;
 using BgEngine.Web.ViewModels;
-using BgEngine.Domain.DatabaseContracts;
 using BgEngine.Application.ResourceConfiguration;
 using BgEngine.Application.DTO;
 using BgEngine.Domain.EntityModel;
+using BgEngine.Security.Services;
 
 namespace BgEngine
 {
@@ -69,21 +69,13 @@ namespace BgEngine
         }
 
         protected void Application_Start()
-        {
-            // Init Database
-            // Uncomment next lines to Init the database
-            // You should change between Initializers in IoC.cs if you want to load test data or not
-            // Drop the Database if exists before creating a empty or test one
-            //var database = ObjectFactory.GetInstance<IDatabaseInitialize>();
-            //database.Initialize();
-
-            //Execute updates against Database
-            //var service = ObjectFactory.GetInstance<IService<Tag>>();
-            //int i = service.ExecuteInDatabaseByQuery("ALTER TABLE Categories ALTER COLUMN Name NVARCHAR ( 100 )");            
-            
+        {            
             // Load Resources
             var bgresource = ObjectFactory.GetInstance<IBlogResourceServices>();
             bgresource.LoadResources();
+
+            // Check if any user exists. If not, create one
+            CheckForAdminUser();
 
             //Register areas
             AreaRegistration.RegisterAllAreas();
@@ -108,5 +100,16 @@ namespace BgEngine
         {
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
+
+        private void CheckForAdminUser()
+        {            
+             var roles = CodeFirstRoleServices.GetUsersInRole(BgResources.Security_AdminRole);
+             if (roles.Length == 0)
+             {
+                CodeFirstSecurity.CreateAccount(BgResources.Security_AdminRole, "admin", BgResources.Email_UserName, false);
+                CodeFirstRoleServices.AddUsersToRoles(new string[] { "admin" }, new string[] { BgResources.Security_AdminRole, BgResources.Security_PremiumRole });
+             }
+        }
+
     }
 }

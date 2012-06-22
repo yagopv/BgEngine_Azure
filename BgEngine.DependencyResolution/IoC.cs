@@ -23,13 +23,14 @@ using StructureMap;
 using BgEngine.Domain.RepositoryContracts;
 using BgEngine.Infraestructure.Repositories;
 using BgEngine.Domain.EntityModel;
-using BgEngine.Domain.DatabaseContracts;
-using BgEngine.Infraestructure.DatabaseInitialization;
 using BgEngine.Infraestructure.UnitOfWork;
 using BgEngine.Application.Services;
 using BgEngine.Domain.Validation;
 using BgEngine.Infraestructure.Validation;
 using BgEngine.Application.ResourceConfiguration;
+using System.Data.Entity;
+using BgEngine.Infraestructure.DatabaseInitialization;
+
 
 namespace BgEngine.DependencyResolution {
     /// <summary>
@@ -88,9 +89,9 @@ namespace BgEngine.DependencyResolution {
                             x.For<IRepository<BlogResource>>().HttpContextScoped().Use<Repository<BlogResource>>();
                             //Database initialization dependencies
                             //You can change between:
-                            //  - DatabaseInitialize (Create empty database wit admin user and roles)
-                            //  - TestDatabaseInitialize (Create database with test data)
-                            x.For<IDatabaseInitialize>().HttpContextScoped().Use<DatabaseInitialize>();
+                            //  - ModelContextInit (Create empty database wit admin user and roles)
+                            //  - TestModelContextInit (Create database with test data)
+                            x.For<IDatabaseInitializer<BlogUnitOfWork>>().HttpContextScoped().Use<ModelContextInit>();
                             //Initialize validator
                             x.For<IEntityValidator>().HttpContextScoped().Use<EntityValidator>();
                             //Resources
