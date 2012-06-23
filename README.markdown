@@ -41,7 +41,7 @@ Creating a blog is a great way to gain SEO authority for your site. In order to 
 
 **Add the BgEngine platform**
 
-Create a folder named BgEngine in the parent directory where your existing Azure solution directory is. (ex: If your existing solution is in “C:\Projects\MyAzureProject” then create a directory named “C:\Projects\BgEngine” and download the latest BgEngine.Azure code from Codeplex (add url here)
+Create a folder named BgEngine in the parent directory where your existing Azure solution directory is. (ex: If your existing solution is in “C:\Projects\MyAzureProject” then create a directory named “C:\Projects\BgEngine” and download the latest BgEngine.Azure code from Codeplex (https://github.com/downloads/yagopv/BgEngine_Azure/BgEngine_Azure.sqlce)
 
 Right-click your solution and choose Add… Existing project… Navigate to the BgEngine folder on your local machine and add the projects:
 
