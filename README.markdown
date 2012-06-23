@@ -1,4 +1,4 @@
-# Add **BgEngine **to an existing Azure website
+# Add **BgEngine** to an existing Azure website
 
 Creating a blog is a great way to gain SEO authority for your site. In order to gain SEO for your domain , instead of WordPress or Blogger, the ideal situation is to create your blog under your existing site (ex: www.YourSite.com/Blog). This doc will guide you through that process.
 
@@ -9,7 +9,7 @@ Creating a blog is a great way to gain SEO authority for your site. In order to 
     CREATE DATABASE BgEngine
     GO
 
-2. Open a query window to your new **BgEngine **db and run the Initialize BgEngine.sql script (add url here)
+2. Open a query window to your new **BgEngine** db and run the Initialize BgEngine.sql script (add url here)
 
 ## Task 2: Configure Email, Google, Twitter
 
