@@ -70,7 +70,7 @@ To configure BgEngine under your exisitng domain () open the ServiceDefinition.c
 Ex: 
 The Confrim account page points to:  
 http://127.0.0.1:82/Blog/Account/ConfirmAccount?id=BKkMAuVkRQwQOJjdTJhrg%3d%3d&user=test                             
-This page can be navigated to manually at port 81        
+This page can be navigated to manually at port 81         
 On compile you will see this warning:  
 > Windows Azure Tools: Warning: Remapping private port 81 in 82 role YourRoleName to avoid conflict during emulation.
 
