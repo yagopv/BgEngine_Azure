@@ -184,18 +184,37 @@
         $(".fancy-image").fancybox({
             'titlePosition'	: 'inside'
         });
-    }		
+    }
 
-     $(document).ready(function () {
-         reloadscripts();
-         $('#file_upload').uploadifive({
-             'uploadScript': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})',
-             'onUploadComplete': function (file, data) {
-                 $("#content").load("@Request.Path #content", reloadscripts);
-             },
-             'formData' : { "albumid" : "@Model.AlbumId"}
-         });
-     });
+    $(document).ready(function () {
+        reloadscripts();
+        if ((window.FormData === undefined) || (navigator.userAgent.toLowerCase().indexOf('chrome') > -1))
+        {
+             $.getScript("@Url.Content("~/Scripts/jquery.uploadify-3.1.min.js")", function() {
+                  $('#file_upload').uploadify({ 
+                     'swf': "@Url.Content("~/Content/SWF/uploadify.swf")",
+                     'uploader': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})',
+                     'onUploadComplete': function (file, data) {
+                        $("#content").load("@Request.Path #content", reloadscripts);
+                      },                    
+                      'formData': { "albumid": "@Model.AlbumId" }
+                  });
+              });                     
+        }
+        else
+        {
+            $.getScript("@Url.Content("~/Scripts/jquery.uploadifive-v1.0.min.js")", function() {
+                $('#file_upload').uploadifive({
+                    'uploadScript': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})',
+                    'onUploadComplete': function (file, data) {
+                         $("#content").load("@Request.Path #content", reloadscripts);
+                    },
+                    'formData': { "albumid": "@Model.AlbumId" },
+                });
+            });
+        }
+    });
+
 </script>
 
 <div id="content" class="ui-widget ui-helper-clearfix ui-helper-margin-top-bottom">

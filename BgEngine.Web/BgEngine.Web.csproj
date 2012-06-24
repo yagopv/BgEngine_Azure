@@ -239,10 +239,12 @@
     <Content Include="Content\Icons\TestImageNoText_65x29.png" />
     <Content Include="Content\Icons\Twitter48x48.jpg" />
     <Content Include="Content\Icons\uploadifive-cancel.png" />
+    <Content Include="Content\Icons\uploadify-cancel.png" />
     <Content Include="Content\Images\readme.txt" />
     <Content Include="Content\Images\Thumbnails\readme.txt" />
     <Content Include="Content\jCrumb.css" />
     <Content Include="Content\rateit.css" />
+    <Content Include="Content\SWF\uploadify.swf" />
     <Content Include="Content\themes\Aristo\images\bg_fallback.png" />
     <Content Include="Content\themes\Aristo\images\icon_sprite.png" />
     <Content Include="Content\themes\Aristo\images\progress_bar.gif" />
@@ -328,6 +330,7 @@
     <Content Include="Content\themes\UI Lightness\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\tipTip.css" />
     <Content Include="Content\uploadifive.css" />
+    <Content Include="Content\uploadify.css" />
     <Content Include="Scripts\galleria\galleria-1.2.7.js" />
     <Content Include="Scripts\galleria\galleria-1.2.7.min.js" />
     <Content Include="Scripts\galleria\themes\folio\galleria.folio.css" />
@@ -363,6 +366,7 @@
     <Content Include="Scripts\jquery.rateit.js" />
     <Content Include="Scripts\jquery.tipTip.js" />
     <Content Include="Scripts\jquery.uploadifive-v1.0.min.js" />
+    <Content Include="Scripts\jquery.uploadify-3.1.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\galleria\themes\classic\classic-demo.html" />
     <Content Include="Scripts\galleria\themes\classic\classic-loader.gif" />
