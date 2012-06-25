@@ -4,7 +4,7 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=bgengine;AccountKey=gS+z6QmgtgUdzU+25LvhocZ2MQOB4lcDGS6pKON4+fBso4PFf603152BmTB28YPp1T4xIjYTWjaIyZ4BQlPYNw==" />
+      <Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

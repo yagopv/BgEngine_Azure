@@ -30,15 +30,18 @@
              $.getScript("@Url.Content("~/Scripts/jquery.uploadify-3.1.min.js")", function() {
                   $('#file_upload').uploadify({ 
                      'swf': "@Url.Content("~/Content/SWF/uploadify.swf")",
-                     'uploader': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})'
+                     'uploader': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})'                     
                   });
+                  // IE < 9 bug
+                  FileToUploadUploader=document.getElementById("FileToUploadUploader");             
+
               });                     
         }
         else
         {
             $.getScript("@Url.Content("~/Scripts/jquery.uploadifive-v1.0.min.js")", function() {
                 $('#file_upload').uploadifive({
-                    'uploadScript': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})'
+                    'uploadScript': '@Url.RouteUrl("Default", new { controller = "File", action = "Upload"})'                    
                 });
             });
         }
