@@ -197,6 +197,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BgEngine.sdf" />
     <Content Include="App_Data\combres.xml">
       <SubType>Designer</SubType>
     </Content>
