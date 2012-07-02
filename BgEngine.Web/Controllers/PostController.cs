@@ -286,6 +286,7 @@ namespace BgEngine.Controllers
                 return new NotFoundMvc.NotFoundViewResult();
             }
             Post post = BlogServices.FindPost(id);
+
             if (post == null)
             {
                 return new NotFoundMvc.NotFoundViewResult();

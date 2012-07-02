@@ -72,6 +72,17 @@ namespace BgEngine.Domain.EntityModel
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(Resources.AppMessages), ErrorMessageResourceName = "Required")]        
         public int PostId { get; set; }
+        
+        
+        [Required(ErrorMessageResourceType = typeof(Resources.AppMessages), ErrorMessageResourceName = "Required")]
+        [Display(ResourceType = typeof(Resources.AppMessages), Name = "Comment_IsSpam", Prompt = "Comment_IsSpam_Prompt")]
+        public bool IsSpam { get; set; }
+        
+        [Display(ResourceType = typeof(Resources.AppMessages), Name = "Comment_Ip", Prompt = "Comment_Ip_Prompt")]
+        public string Ip { get; set; }
+        
+        [Display(ResourceType = typeof(Resources.AppMessages), Name = "Comment_UserAgent", Prompt = "Comment_UserAgent_Prompt")]
+        public string UserAgent { get; set; }
 
         /// <summary>
         /// Navigation property representing the related Post

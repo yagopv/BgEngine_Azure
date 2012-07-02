@@ -24,12 +24,12 @@ namespace BgEngine.Domain.EntityModel
         /// <summary>
         /// The AnonymousUser name
         /// </summary>
-        [Display(ResourceType = typeof(Resources.AppMessages), Name = "AnonymousUser_Username", Prompt = "AnonymousUser_Username_Prompt")]
+        [Display(ResourceType = typeof(Resources.AppMessages), Name = "AnonymousUser_Username", Prompt = "AnonymousUser_Username_Prompt")]        
         public string Username { get; set; }
         /// <summary>
         /// The AnonymousUser Email
         /// </summary>
-        [Display(ResourceType = typeof(Resources.AppMessages), Name = "AnonymousUser_Email", Prompt = "AnonymousUser_Email_Prompt")]
+        [Display(ResourceType = typeof(Resources.AppMessages), Name = "AnonymousUser_Email", Prompt = "AnonymousUser_Email_Prompt")]        
         public string Email { get; set; }
         /// <summary>
         /// The AnonymousUser Web

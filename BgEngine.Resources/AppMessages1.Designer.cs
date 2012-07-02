@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La clave de la API de Akismet no es válida. Corrígela o bien no la informes.
+        /// </summary>
+        public static string AkismetApikeyInvalid {
+            get {
+                return ResourceManager.GetString("AkismetApikeyInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Album.
         /// </summary>
         public static string Album {
@@ -367,11 +376,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dirección Ip.
+        /// </summary>
+        public static string Comment_Ip {
+            get {
+                return ResourceManager.GetString("Comment_Ip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indica la dirección ip de la que proviene el comentario.
+        /// </summary>
+        public static string Comment_Ip_Prompt {
+            get {
+                return ResourceManager.GetString("Comment_Ip_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Es comentario hijo?.
         /// </summary>
         public static string Comment_IsRelated {
             get {
                 return ResourceManager.GetString("Comment_IsRelated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spam.
+        /// </summary>
+        public static string Comment_IsSpam {
+            get {
+                return ResourceManager.GetString("Comment_IsSpam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informa si este comentario fue categorizado como spam.
+        /// </summary>
+        public static string Comment_IsSpam_Prompt {
+            get {
+                return ResourceManager.GetString("Comment_IsSpam_Prompt", resourceCulture);
             }
         }
         
@@ -399,6 +444,24 @@ namespace Resources {
         public static string Comment_Reply {
             get {
                 return ResourceManager.GetString("Comment_Reply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agente.
+        /// </summary>
+        public static string Comment_UserAgent {
+            get {
+                return ResourceManager.GetString("Comment_UserAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indica el agente con el que se realizó la petición.
+        /// </summary>
+        public static string Comment_UserAgent_Prompt {
+            get {
+                return ResourceManager.GetString("Comment_UserAgent_Prompt", resourceCulture);
             }
         }
         
@@ -529,11 +592,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Akismet API  key.
+        /// </summary>
+        public static string Config_Akismet {
+            get {
+                return ResourceManager.GetString("Config_Akismet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Introduce tu clave de Akismet para comenzar a filtrar Spam. Deja el campo vacío si no quieres filtrar Spam mediante este método.
         /// </summary>
         public static string Config_AkismetPrompt {
             get {
                 return ResourceManager.GetString("Config_AkismetPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduce tu clave de la API de Akismet. Déjalo vacío si no quieres usar el filtro anti spam.
+        /// </summary>
+        public static string Config_AkismetPrompt1 {
+            get {
+                return ResourceManager.GetString("Config_AkismetPrompt1", resourceCulture);
             }
         }
         
@@ -1969,6 +2050,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marcarlo como válido.
+        /// </summary>
+        public static string MarkAsHam {
+            get {
+                return ResourceManager.GetString("MarkAsHam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marcar como spam.
+        /// </summary>
+        public static string MarkAsSpam {
+            get {
+                return ResourceManager.GetString("MarkAsSpam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre.
         /// </summary>
         public static string Name {
@@ -2356,6 +2455,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Regístrate.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Introduce los datos de tu cuenta (Esta información es obligatoria).
         /// </summary>
         public static string Register_AccountData {
@@ -2721,6 +2829,15 @@ namespace Resources {
         public static string SignIn {
             get {
                 return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El comentario queda pendiente de aprobación.
+        /// </summary>
+        public static string SpamDetected {
+            get {
+                return ResourceManager.GetString("SpamDetected", resourceCulture);
             }
         }
         

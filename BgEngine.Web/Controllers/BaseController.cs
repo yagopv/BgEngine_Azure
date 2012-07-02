@@ -46,6 +46,7 @@ namespace BgEngine.Controllers
                 {
                     cultureName = Request.UserLanguages[0]; // obtain it from HTTP header AcceptLanguages
                 }
+
             // Validate culture name
             cultureName = CultureHelper.GetImplementedCulture(cultureName); // This is safe
 
