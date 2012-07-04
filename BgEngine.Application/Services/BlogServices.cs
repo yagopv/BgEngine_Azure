@@ -321,6 +321,7 @@ namespace BgEngine.Application.Services
         public Post FindPost(string postcode)
         {
             Post post = PostRepository.Get(p => p.Code == postcode, p => p.OrderBy(o => o.DateCreated), "Category,User,Tags,Ratings,Image,Comments").SingleOrDefault();
+            
             if (post == null)
             {
                 return null;

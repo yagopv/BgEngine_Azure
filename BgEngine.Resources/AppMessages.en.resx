@@ -1230,4 +1230,52 @@
   <data name="RequestError" xml:space="preserve">
     <value>There was an error processing the request</value>
   </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="AntiForgeryError" xml:space="preserve">
+    <value>This request was rejected</value>
+  </data>
+  <data name="Config_Akismet" xml:space="preserve">
+    <value>Akismet API  key</value>
+  </data>
+  <data name="Config_AkismetPrompt" xml:space="preserve">
+    <value>Fill in your  Akismet API key and enable Spam filtering. Leave empty if you don´t want the spam filter working</value>
+  </data>
+  <data name="Akismet_API_key" xml:space="preserve">
+    <value>Akismet API key</value>
+  </data>
+  <data name="Comment_IsSpam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Comment_IsSpam_Prompt" xml:space="preserve">
+    <value>Info about if this comment was cathegorized like spam</value>
+  </data>
+  <data name="Comment_Ip" xml:space="preserve">
+    <value>Ip Address</value>
+  </data>
+  <data name="Comment_Ip_Prompt" xml:space="preserve">
+    <value>Info about the ip address of the user who writes the comment</value>
+  </data>
+  <data name="Comment_UserAgent" xml:space="preserve">
+    <value>User Agent</value>
+  </data>
+  <data name="Comment_UserAgent_Prompt" xml:space="preserve">
+    <value>Info about the user agent used to write the comment</value>
+  </data>
+  <data name="AkismetApikeyInvalid" xml:space="preserve">
+    <value>The Akismet API key is invalid. Correct it or take it out</value>
+  </data>
+  <data name="SpamDetected" xml:space="preserve">
+    <value>Comment pending of approval</value>
+  </data>
+  <data name="MarkAsHam" xml:space="preserve">
+    <value>Mark as valid</value>
+  </data>
+  <data name="MarkAsSpam" xml:space="preserve">
+    <value>Mark as spam</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
 </root>

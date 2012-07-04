@@ -27,6 +27,7 @@ using System.Data.Entity;
 using BgEngine.Domain.RepositoryContracts;
 using BgEngine.Infraestructure.UnitOfWork;
 using BgEngine.Domain.UnitOfWork;
+using BgEngine.Domain.EntityModel;
 
 namespace BgEngine.Infraestructure.Repositories
 {
