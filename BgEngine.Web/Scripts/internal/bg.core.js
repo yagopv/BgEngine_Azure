@@ -65,7 +65,7 @@ $(function () {
         });
     });
 
-    $(".clickable").click(function () {
+    $(".clickable").live("click", function () {
         location.href = $(this).attr("data-href");
     });
 
