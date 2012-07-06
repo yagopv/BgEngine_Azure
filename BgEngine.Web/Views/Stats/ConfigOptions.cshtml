@@ -103,6 +103,19 @@
 					</div>
 			   </td>
 			</tr>
+   		    <tr>
+				 <td>
+					<div class="editor-label">
+						<strong>@Html.LabelFor(model => model.Send_Mail_When_Comment_Received)</strong>
+					</div>
+				</td>
+				<td>
+					<div class="editor-field">
+						@Html.EditorFor(model => model.Send_Mail_When_Comment_Received)
+						@Html.ValidationMessageFor(model => model.Send_Mail_When_Comment_Received)
+					</div>
+			   </td>
+			</tr>
 		</table>
 		<h2>@Resources.AppMessages.Config_PaginationFields</h2>
 		<table>

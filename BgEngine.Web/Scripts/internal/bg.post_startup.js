@@ -47,5 +47,9 @@
 			return false; 
 		}); 
         $(".image").scaleImage({fade: 2000,scale: "fill", center: true});
+        $("#options").click(function () {
+            $("#options-panel").slideToggle("slow");
+            return false;
+        });        
     };
 })(jQuery);

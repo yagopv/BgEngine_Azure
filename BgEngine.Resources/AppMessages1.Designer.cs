@@ -439,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment received in {0}.
+        /// </summary>
+        public static string Comment_Received {
+            get {
+                return ResourceManager.GetString("Comment_Received", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Responder.
         /// </summary>
         public static string Comment_Reply {
@@ -2068,6 +2077,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marked as ham.
+        /// </summary>
+        public static string MarkedAsHam {
+            get {
+                return ResourceManager.GetString("MarkedAsHam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marked as spam. Approval pending.
+        /// </summary>
+        public static string MarkedAsSpam {
+            get {
+                return ResourceManager.GetString("MarkedAsSpam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre.
         /// </summary>
         public static string Name {
@@ -2766,6 +2793,15 @@ namespace Resources {
         public static string SelectFiles {
             get {
                 return ResourceManager.GetString("SelectFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send mail when comment received?.
+        /// </summary>
+        public static string Send_Mail_When_Comment_Received {
+            get {
+                return ResourceManager.GetString("Send_Mail_When_Comment_Received", resourceCulture);
             }
         }
         
