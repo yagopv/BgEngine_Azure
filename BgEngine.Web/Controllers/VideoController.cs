@@ -114,6 +114,7 @@ namespace BgEngine.Controllers
 		[EnableCompression]
 		[ValidateAntiForgeryToken]
 		[HandleError(ExceptionType = typeof(HttpAntiForgeryException), View = "AntiForgeryError")]
+        [ValidateInput(false)]
 		public ActionResult Create(Video video, int[] selectedtags)
 		{
 			if (ModelState.IsValid)
@@ -146,6 +147,7 @@ namespace BgEngine.Controllers
 		[EnableCompression]
 		[ValidateAntiForgeryToken]
 		[HandleError(ExceptionType = typeof(HttpAntiForgeryException), View = "AntiForgeryError")]
+        [ValidateInput(false)]
 		public ActionResult Edit(Video video, int[] selectedtags)
 		{
 			Video videotoupdate =  VideoServices.FindAllEntities(v => v.VideoId == video.VideoId, null, "Tags").FirstOrDefault();
