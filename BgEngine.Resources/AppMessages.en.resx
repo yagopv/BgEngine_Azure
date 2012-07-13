@@ -1290,4 +1290,7 @@
   <data name="Send_Mail_When_Comment_Received" xml:space="preserve">
     <value>¿Enviar un mail cuando se recibe un comentario?</value>
   </data>
+  <data name="VideoSearchBox" xml:space="preserve">
+    <value>Find videos ...</value>
+  </data>
 </root>
