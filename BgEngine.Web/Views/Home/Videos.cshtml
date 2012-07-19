@@ -62,7 +62,7 @@
 		<div id="elements" class="ui-helper-width-100pc bg-align-center">
 			@foreach (var modelitem in Model)
 			{
-				<div class="video-container ui-widget ui-corner-all ui-state-default ui-helper-display-inline-block ui-helper-padding">
+				<div class="video-container ui-widget ui-corner-all ui-state-default ui-helper-padding">
 					<h2 class="video-header tooltip" title="@modelitem.Name">@(modelitem.Name.Length > 45 ? CustomHelper.TruncateString(modelitem.Name, 45).ToString() : modelitem.Name)</h2>
 					@if (String.IsNullOrEmpty(modelitem.Description))
 					{ 
@@ -76,29 +76,29 @@
 						@if (!String.IsNullOrEmpty(modelitem.Html))
 						{ 
 							@Html.Raw(modelitem.Html)
-						}
-						else
-						{
-							if (!String.IsNullOrEmpty(modelitem.Path))
-							{
-								if (modelitem.VideoType == VideoType.Flash)
-								{
-							@Video.Flash(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
-						}
-						else if (modelitem.VideoType == VideoType.MediaPlayer)
-						{
-							@Video.MediaPlayer(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
-						}
-						else if (modelitem.VideoType == VideoType.Silverlight)
-						{
-							@Video.Silverlight(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
-						}
-						else if (modelitem.VideoType == VideoType.Html5)
-						{
-							@Html.Html5Video(modelitem.Path, BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight);
-						}
-					}
-				}
+						  }
+						  else
+						  {
+							  if (!String.IsNullOrEmpty(modelitem.Path))
+							  {
+								  if (modelitem.VideoType == VideoType.Flash)
+								  {
+												@Video.Flash(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
+								  }
+								  else if (modelitem.VideoType == VideoType.MediaPlayer)
+								  {
+												@Video.MediaPlayer(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
+								  }
+								  else if (modelitem.VideoType == VideoType.Silverlight)
+								  {
+												@Video.Silverlight(path: modelitem.Path, width: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoWidth, height: BgEngine.Application.ResourceConfiguration.BgResources.Media_VideoHeight)
+								  }
+								  else if (modelitem.VideoType == VideoType.Html5)
+								  {
+												@Html.Html5Video(modelitem.Path);
+								  }
+							  }
+						  }
 					</div>
 				</div>        
 			}
