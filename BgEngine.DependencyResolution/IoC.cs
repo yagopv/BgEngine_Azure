@@ -30,6 +30,7 @@ using BgEngine.Infraestructure.Validation;
 using BgEngine.Application.ResourceConfiguration;
 using System.Data.Entity;
 using BgEngine.Infraestructure.DatabaseInitialization;
+using System.Data.Entity;
 
 
 namespace BgEngine.DependencyResolution {
@@ -55,6 +56,8 @@ namespace BgEngine.DependencyResolution {
                             x.For<IAccountServices>().HttpContextScoped().Use<AccountServices>();
                             x.For<IMediaServices>().HttpContextScoped().Use<MediaServices>();
                             x.For<IStatsServices>().HttpContextScoped().Use<StatsServices>();
+                            x.For<ISubscriptionServices>().HttpContextScoped().Use<SubscriptionServices>();
+                            x.For<INewsletterServices>().HttpContextScoped().Use<NewsletterServices>();
                             x.For<IService<Category>>().HttpContextScoped().Use<Service<Category>>();
                             x.For<IService<Rating>>().HttpContextScoped().Use<Service<Rating>>();
                             x.For<IService<Image>>().HttpContextScoped().Use<Service<Image>>();
@@ -79,6 +82,9 @@ namespace BgEngine.DependencyResolution {
                             x.For<IVideoRepository>().HttpContextScoped().Use<VideoRepository>();
                             x.For<ITagRepository>().HttpContextScoped().Use<TagRepository>();
                             x.For<IRepository<User>>().HttpContextScoped().Use<Repository<User>>();
+                            x.For<IRepository<Subscription>>().HttpContextScoped().Use<Repository<Subscription>>();
+                            x.For<INewsletterRepository>().HttpContextScoped().Use<NewsletterRepository>();
+                            x.For<IRepository<Newsletter>>().HttpContextScoped().Use<Repository<Newsletter>>();
                             x.For<IRepository<Post>>().HttpContextScoped().Use<PostRepository>();
                             x.For<IRepository<Comment>>().HttpContextScoped().Use<CommentRepository>();
                             x.For<IRepository<Category>>().HttpContextScoped().Use<CategoryRepository>();

@@ -118,6 +118,12 @@ namespace BgEngine.Domain.EntityModel
         public bool IsPostCommentsClosed { get; set; }
 
         /// <summary>
+        /// Navigation property with related Subscriptions
+        /// </summary>
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
+
+
+        /// <summary>
         /// Number of visits of teh Post
         /// </summary>
         [Display(ResourceType = typeof(Resources.AppMessages), Name = "Post_Visits")]

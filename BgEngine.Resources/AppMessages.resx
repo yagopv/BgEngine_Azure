@@ -757,7 +757,7 @@
     <value>Se ha producido un error al tratar de procesar la peticion</value>
   </data>
   <data name="Error_NoPostFound" xml:space="preserve">
-    <value>No se ha encontrado Posts</value>
+    <value>No se han encontrado Posts</value>
   </data>
   <data name="Post_Comment" xml:space="preserve">
     <value>Comentarios</value>
@@ -856,7 +856,7 @@
     <value>El Código ya existe</value>
   </data>
   <data name="Selected_To_Upload" xml:space="preserve">
-    <value>Las imágenes y archivos cargados se van a almacenar en tu cuenta de Azure Storage</value>
+    <value>Loas archivos seleccionados se subirán a la carpeta común "Uploads"</value>
   </data>
   <data name="Error_User_With_Comments" xml:space="preserve">
     <value>No se puede borrar un usuario con Comentarios asociados</value>
@@ -1230,11 +1230,17 @@
   <data name="InvalidUrlCode" xml:space="preserve">
     <value>Código no válido (Valores aceptaddos:  A-Z, a-z, 0-9, -, _)</value>
   </data>
+  <data name="RequestError" xml:space="preserve">
+    <value>Se ha producido un error al procesar la peticion</value>
+  </data>
   <data name="ArgumentError" xml:space="preserve">
     <value>No es posible identificar el recurso buscado a través de la url introducida. Quizás has olvidado algo?</value>
   </data>
-  <data name="RequestError" xml:space="preserve">
-    <value>Se ha producido un error al procesar la peticion</value>
+  <data name="Config_Akismet" xml:space="preserve">
+    <value>Akismet API  key</value>
+  </data>
+  <data name="Config_AkismetPrompt" xml:space="preserve">
+    <value>Introduce tu clave de Akismet para comenzar a filtrar Spam. Deja el campo vacío si no quieres filtrar Spam mediante este método</value>
   </data>
   <data name="AccessDenied" xml:space="preserve">
     <value>Acceso denegado</value>
@@ -1242,17 +1248,8 @@
   <data name="AntiForgeryError" xml:space="preserve">
     <value>Se ha rechazado procesar esta petición</value>
   </data>
-  <data name="Config_AkismetPrompt" xml:space="preserve">
-    <value>Introduce tu clave de Akismet para comenzar a filtrar Spam. Deja el campo vacío si no quieres filtrar Spam mediante este método</value>
-  </data>
-  <data name="Akismet_API_key" xml:space="preserve">
-    <value>Akismet API key</value>
-  </data>
-  <data name="Comment_IsSpam" xml:space="preserve">
-    <value>Spam</value>
-  </data>
-  <data name="Comment_IsSpam_Prompt" xml:space="preserve">
-    <value>Informa si este comentario fue categorizado como spam</value>
+  <data name="AkismetApikeyInvalid" xml:space="preserve">
+    <value>La clave de la API de Akismet no es válida. Corrígela o bien no la informes</value>
   </data>
   <data name="Comment_Ip" xml:space="preserve">
     <value>Dirección Ip</value>
@@ -1260,23 +1257,17 @@
   <data name="Comment_Ip_Prompt" xml:space="preserve">
     <value>Indica la dirección ip de la que proviene el comentario</value>
   </data>
+  <data name="Comment_IsSpam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Comment_IsSpam_Prompt" xml:space="preserve">
+    <value>Informa si este comentario fue categorizado como spam</value>
+  </data>
   <data name="Comment_UserAgent" xml:space="preserve">
     <value>Agente</value>
   </data>
   <data name="Comment_UserAgent_Prompt" xml:space="preserve">
     <value>Indica el agente con el que se realizó la petición</value>
-  </data>
-  <data name="AkismetApikeyInvalid" xml:space="preserve">
-    <value>La clave de la API de Akismet no es válida. Corrígela o bien no la informes</value>
-  </data>
-  <data name="SpamDetected" xml:space="preserve">
-    <value>El comentario queda pendiente de aprobación</value>
-  </data>
-  <data name="Config_Akismet" xml:space="preserve">
-    <value>Akismet API  key</value>
-  </data>
-  <data name="Config_AkismetPrompt1" xml:space="preserve">
-    <value>Introduce tu clave de la API de Akismet. Déjalo vacío si no quieres usar el filtro anti spam</value>
   </data>
   <data name="MarkAsHam" xml:space="preserve">
     <value>Marcarlo como válido</value>
@@ -1287,16 +1278,148 @@
   <data name="Register" xml:space="preserve">
     <value>Regístrate</value>
   </data>
-  <data name="Comment_Received" xml:space="preserve">
-    <value>Comment received in {0}</value>
+  <data name="SpamDetected" xml:space="preserve">
+    <value>El comentario queda pendiente de aprobación</value>
   </data>
-  <data name="MarkedAsHam" xml:space="preserve">
-    <value>Marked as ham</value>
-  </data>
-  <data name="MarkedAsSpam" xml:space="preserve">
-    <value>Marked as spam. Approval pending</value>
+  <data name="Akismet_API_key" xml:space="preserve">
+    <value>Akismet Api Key</value>
   </data>
   <data name="Send_Mail_When_Comment_Received" xml:space="preserve">
-    <value>Send mail when comment received?</value>
+    <value>¿Enviar un mail cuando se recibe un comentario?</value>
+  </data>
+  <data name="Comment_Received" xml:space="preserve">
+    <value>Recibido comentario en {0}</value>
+  </data>
+  <data name="MarkedAsHam" xml:space="preserve">
+    <value>Marcado como válido</value>
+  </data>
+  <data name="MarkedAsSpam" xml:space="preserve">
+    <value>Marcado como spam. Pendiente de aprobación</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Suscríbete y recibe las novedades</value>
+  </data>
+  <data name="Subscribe_Submit" xml:space="preserve">
+    <value>Suscríbete!!</value>
+  </data>
+  <data name="Subscriber_Email_Prompt" xml:space="preserve">
+    <value>Introduce la dirección de mail donde recibir el boletín</value>
+  </data>
+  <data name="Subscription_Exists" xml:space="preserve">
+    <value>Ya existe una subscripción con esta dirección de correo</value>
+  </data>
+  <data name="Subscription_Newsletter_ConfirmationMail_Sent" xml:space="preserve">
+    <value>Se ha enviado un mail  a {0}. Por favor, sigue las instrucciones que podrás encontrar en el mail</value>
+  </data>
+  <data name="ConfirmSubscription_NotExists" xml:space="preserve">
+    <value>La suscripción que está tratando de confirmar no existe</value>
+  </data>
+  <data name="ConfirmSubscription_Succesfull" xml:space="preserve">
+    <value>El proceso de suscripción ha finalizado con éxito</value>
+  </data>
+  <data name="ConfirmSubscription_Message" xml:space="preserve">
+    <value>Gracias por suscribirte. Ahora ya estás listo para recibir nuestro boletín</value>
+  </data>
+  <data name="Home_Admin_Subscribers" xml:space="preserve">
+    <value>Suscriptores</value>
+  </data>
+  <data name="IsConfirmed" xml:space="preserve">
+    <value>¿Confirmado?</value>
+  </data>
+  <data name="Subscribers" xml:space="preserve">
+    <value>Suscriptores</value>
+  </data>
+  <data name="Subscription_Type" xml:space="preserve">
+    <value>Tipo de suscripcion</value>
+  </data>
+  <data name="Error_NoSubscriptionsFound" xml:space="preserve">
+    <value>No se han encontrado suscripciones</value>
+  </data>
+  <data name="Localization_Create_Subscription" xml:space="preserve">
+    <value>Introduce los datos para crear una nueva Suscripción</value>
+  </data>
+  <data name="ConfirmSubscription_Thanks" xml:space="preserve">
+    <value>Gracias por suscribirte a nuesttro boletín. A partir de ahora te enviaremos mails con las últimas novedades del blog</value>
+  </data>
+  <data name="Subscribe_Authenticated" xml:space="preserve">
+    <value>Hola {0}!!,  si quieres suscribirte a nuestro boletín pulsa en el siguiente botón</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Mail del suscriptor</value>
+  </data>
+  <data name="Subscription_Subscribername_Prompt" xml:space="preserve">
+    <value>Nombre del suscriptor</value>
+  </data>
+  <data name="Generate_Newsletter" xml:space="preserve">
+    <value>Generar un nuevo boletín</value>
+  </data>
+  <data name="Could_not_load_content" xml:space="preserve">
+    <value>No se ha podido cargar el contenido</value>
+  </data>
+  <data name="Create_Newsletter" xml:space="preserve">
+    <value>Nuevo boletín</value>
+  </data>
+  <data name="Newsletters" xml:space="preserve">
+    <value>Boletines</value>
+  </data>
+  <data name="Home_Admin_Newsletters" xml:space="preserve">
+    <value>Boletines</value>
+  </data>
+  <data name="HasPendingTasks" xml:space="preserve">
+    <value>¿Hay tareas pendientes?</value>
+  </data>
+  <data name="NoPostsSelected" xml:space="preserve">
+    <value>No posts selected. Please choose any of them to create the Newsletter</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Hay campos requeridos pendientes</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
+  <data name="Error_NoNewslettersFound" xml:space="preserve">
+    <value>No se han encontrado Boletines</value>
+  </data>
+  <data name="SendNewsletter" xml:space="preserve">
+    <value>Enviar boletín a los suscriptores</value>
+  </data>
+  <data name="Error_NoTasksFound" xml:space="preserve">
+    <value>No hay ninguna tarea pendiente</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Confirm_NewsletterSend_Text1" xml:space="preserve">
+    <value>Vas a enviar el boletín  a todos los suscriptores. ¿Estás seguro?</value>
+  </data>
+  <data name="Confirm_NewsletterSend_Text2" xml:space="preserve">
+    <value>El proceso comenzará al pulsar Comenzar</value>
+  </data>
+  <data name="Confirm_NewsletterSend_Title" xml:space="preserve">
+    <value>¿Enviar el boletín?</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Comenzar</value>
+  </data>
+  <data name="Confirm_NewsletterSend_Text3" xml:space="preserve">
+    <value>Se ha comenzado a enviar los mails a los suscriptores</value>
+  </data>
+  <data name="HasErrorTasks" xml:space="preserve">
+    <value>¿Hay tareas en error?</value>
+  </data>
+  <data name="InProcess" xml:space="preserve">
+    <value>¿Boletin en proceso?</value>
+  </data>
+  <data name="InProcess_Prompt" xml:space="preserve">
+    <value>Boletin en proceso</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>Teminar suscripción</value>
+  </data>
+  <data name="UnsubscribeText" xml:space="preserve">
+    <value>Introduce tu mail para terminar la suscripción</value>
+  </data>
+  <data name="Unsubscribe_NotExist" xml:space="preserve">
+    <value>No hay ninguna suscripción con el mail introducido</value>
   </data>
 </root>

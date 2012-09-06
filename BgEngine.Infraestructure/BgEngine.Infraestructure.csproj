@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\ModelContextInit.cs" />
+    <Compile Include="Repositories\NewsletterRepository.cs" />
     <Compile Include="Security\CodeFirstMembershipProvider.cs" />
     <Compile Include="Security\CodeFirstRoleProvider.cs" />
     <Compile Include="UnitOfWork\IBlogUnitOfWork.cs" />

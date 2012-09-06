@@ -101,6 +101,7 @@ namespace BgEngine.Domain.EntityModel
         /// </summary>
 		[Required]
 		[Display(ResourceType = typeof(Resources.AppMessages), Name = "Video_Type")]
+        [StringLength(20, ErrorMessageResourceType = typeof(Resources.AppMessages), ErrorMessageResourceName = "ErrorLenght")]
 		string Type { get; set; }
 
         /// <summary>

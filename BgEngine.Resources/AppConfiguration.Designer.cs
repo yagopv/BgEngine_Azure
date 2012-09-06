@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 6LdqfcQSAAAAAKqgoeIUNlYbOJFHM3rhia2kpbRW.
+        /// </summary>
+        public static string Akismet_API_key {
+            get {
+                return ResourceManager.GetString("Akismet_API_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ~/Content/Files/IpBlackList/ipList.txt.
         /// </summary>
         public static string BlackListIpFile {
@@ -210,6 +219,33 @@ namespace Resources {
         public static string Premium_Role {
             get {
                 return ResourceManager.GetString("Premium_Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6LdofcQSAAAAAMGb119SbYgX18pwtPnPbBNk1tMH.
+        /// </summary>
+        public static string Recaptcha_Private_Key_Http {
+            get {
+                return ResourceManager.GetString("Recaptcha_Private_Key_Http", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6LdofcQSAAAAAEw0fhwatfkTAJJlYEyjlCTrgKKm.
+        /// </summary>
+        public static string Recaptcha_Public_Key_Http {
+            get {
+                return ResourceManager.GetString("Recaptcha_Public_Key_Http", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6LdqfcQSAAAAAHP4vF9uTfxmao2C4e8oYOoT1_dK.
+        /// </summary>
+        public static string Recaptcha_Public_Key_localhost {
+            get {
+                return ResourceManager.GetString("Recaptcha_Public_Key_localhost", resourceCulture);
             }
         }
         

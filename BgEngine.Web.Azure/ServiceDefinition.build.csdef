@@ -26,5 +26,6 @@
     <ConfigurationSettings>
       <Setting name="StorageConnectionString" />
     </ConfigurationSettings>
+    <LocalResources></LocalResources>
   </WebRole>
 </ServiceDefinition>

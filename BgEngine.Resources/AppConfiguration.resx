@@ -120,9 +120,6 @@
   <data name="Admin_Role" xml:space="preserve">
     <value>admin</value>
   </data>
-  <data name="BlackListIpFile" xml:space="preserve">
-    <value>~/Content/Files/IpBlackList/ipList.txt</value>
-  </data>
   <data name="Categories_Number_of_Categories_per_Page" xml:space="preserve">
     <value>10</value>
   </data>
@@ -168,6 +165,18 @@
   <data name="Premium_Role" xml:space="preserve">
     <value>premium</value>
   </data>
+  <data name="Recaptcha_Private_Key_Http" xml:space="preserve">
+    <value>6LdofcQSAAAAAMGb119SbYgX18pwtPnPbBNk1tMH</value>
+  </data>
+  <data name="Akismet_API_key" xml:space="preserve">
+    <value>6LdqfcQSAAAAAKqgoeIUNlYbOJFHM3rhia2kpbRW</value>
+  </data>
+  <data name="Recaptcha_Public_Key_Http" xml:space="preserve">
+    <value>6LdofcQSAAAAAEw0fhwatfkTAJJlYEyjlCTrgKKm</value>
+  </data>
+  <data name="Recaptcha_Public_Key_localhost" xml:space="preserve">
+    <value>6LdqfcQSAAAAAHP4vF9uTfxmao2C4e8oYOoT1_dK</value>
+  </data>
   <data name="Roles_Number_of_Roles_per_Page" xml:space="preserve">
     <value>10</value>
   </data>
@@ -206,5 +215,8 @@
   </data>
   <data name="Video_Container_Width" xml:space="preserve">
     <value>250</value>
+  </data>
+  <data name="BlackListIpFile" xml:space="preserve">
+    <value>~/Content/Files/IpBlackList/ipList.txt</value>
   </data>
 </root>
