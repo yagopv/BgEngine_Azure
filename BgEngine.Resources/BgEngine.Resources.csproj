@@ -45,38 +45,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppConfiguration.resx</DependentUpon>
     </Compile>
-    <Compile Include="AppMessages.en.Designer.cs" />
-    <Compile Include="AppMessages1.Designer.cs">
+    <Compile Include="AppMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="EmailTemplates.en.Designer.cs" />
-    <Compile Include="EmailTemplates1.Designer.cs">
+    <Compile Include="AppMessages.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppMessages.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EmailTemplates.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailTemplates.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EmailTemplates.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailTemplates.en.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppConfiguration.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppConfiguration.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppMessages.en.resx" />
-    <EmbeddedResource Include="AppMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppMessages1.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmailTemplates.en.resx" />
+    <EmbeddedResource Include="AppMessages.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppMessages.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppMessages.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppMessages.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailTemplates.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmailTemplates.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>EmailTemplates1.Designer.cs</LastGenOutput>
+      <LastGenOutput>EmailTemplates.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

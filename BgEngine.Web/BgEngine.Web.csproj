@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BackgroundWorkerController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Results\FeedResult.cs" />
     <Compile Include="Results\FileUploadJsonResult.cs" />
+    <Compile Include="Results\JsonpResult.cs" />
     <Compile Include="ViewModels\AnonymousCommentViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordModel.cs" />
     <Compile Include="ViewModels\ConfigOptionsModel.cs" />
@@ -256,23 +258,6 @@
     <Content Include="Content\Images\readme.txt" />
     <Content Include="Content\Images\Thumbnails\readme.txt" />
     <Content Include="Content\jCrumb.css" />
-    <Content Include="Content\Newsletter\body-bg.jpg" />
-    <Content Include="Content\Newsletter\content-bg.jpg" />
-    <Content Include="Content\Newsletter\footer-lines.jpg" />
-    <Content Include="Content\Newsletter\foward.png" />
-    <Content Include="Content\Newsletter\header-bg.jpg" />
-    <Content Include="Content\Newsletter\header-lines.jpg" />
-    <Content Include="Content\Newsletter\i.png" />
-    <Content Include="Content\Newsletter\img1.jpg" />
-    <Content Include="Content\Newsletter\img2.jpg" />
-    <Content Include="Content\Newsletter\in-this-issue.jpg" />
-    <Content Include="Content\Newsletter\li.png" />
-    <Content Include="Content\Newsletter\line.jpg" />
-    <Content Include="Content\Newsletter\line2.jpg" />
-    <Content Include="Content\Newsletter\line3.jpg" />
-    <Content Include="Content\Newsletter\ribbon.jpg" />
-    <Content Include="Content\Newsletter\unsubscribe.png" />
-    <Content Include="Content\Newsletter\world.png" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\SWF\uploadify.swf" />
     <Content Include="Content\themes\Aristo\images\bg_fallback.png" />
@@ -380,7 +365,6 @@
     <Content Include="Scripts\internal\bg.video_startup.js" />
     <Content Include="Scripts\internal\bg.view_posts_newsletter.js" />
     <Content Include="Scripts\internal\bg.view_posts_startup.js" />
-    <Content Include="Scripts\internal\bg.view_post_startup.js" />
     <Content Include="Scripts\internal\bg.infobox.js" />
     <Content Include="Scripts\internal\bg.tagger.js" />
     <Content Include="Global.asax" />
@@ -389,8 +373,10 @@
     <Content Include="Scripts\cultures\globalize.culture.es-ES.js" />
     <Content Include="Scripts\cultures\globalize.culture.es.js" />
     <Content Include="Scripts\cultures\globalize.cultures.js" />
+    <Content Include="Scripts\internal\bg.view_post_startup.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.min.js" />
+    <Content Include="Scripts\jquery.dotdotdot-1.5.1.js" />
     <Content Include="Scripts\jquery.fancybox-1.3.4.pack.js" />
     <Content Include="Scripts\jquery.jcrumb.js" />
     <Content Include="Scripts\jquery.myimgscale.min.js" />
