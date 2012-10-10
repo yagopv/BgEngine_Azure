@@ -28,28 +28,32 @@ namespace BgEngine.Controllers
         }
 
         public JsonpResult GetPosts(int? page)
-        {                        
-            var pageIndex = page ?? 0;            
-            IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, Int32.Parse(BgResources.Pager_HomeIndexPostsPerPage), p => p.DateCreated, false).Where(p => p.IsPublic);
-            var data =
-                from p in source
-                select new
-                {
-                    postid = p.PostId,
-                    title = p.Title,
-                    description = p.Description,
-                    commentscount = p.Comments.Count<Comment>(),
-                    date = p.DateCreated.ToShortDateString(),
-                    category = p.Category.Name,
-                    thumbnailpath = getImageUrl(p.Image),
-                    user = p.User.Username
-                };
+        {
+            var pageIndex = page ?? 0;
+            IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, 10, p => p.DateCreated, false).Where(p => p.IsPublic);
+            var data = new
+            {
+                posts =
+                    from p in source
+                    select new
+                    {
+                        postid = p.PostId,
+                        title = p.Title,
+                        description = p.Description,
+                        commentscount = p.Comments.Count<Comment>(),
+                        date = p.DateCreated.ToShortDateString(),
+                        category = p.Category.Name,
+                        thumbnailpath = getImageUrl(p.Image),
+                        user = p.User.Username
+                    },
+                pendingposts = source.Count() == 10 ? true : false
+            };
             return this.Jsonp(data);
         }
 
         public JsonpResult GetCategories()
         {
-            IEnumerable<Category> source = this.CategoryServices.FindAllEntities(null, o => o.OrderBy(c => c.Name) ,null);
+            IEnumerable<Category> source = this.CategoryServices.FindAllEntities(null, o => o.OrderBy(c => c.Name), null);
             var data =
                 from c in source
                 select new
@@ -57,7 +61,7 @@ namespace BgEngine.Controllers
                     categoryid = c.CategoryId,
                     name = c.Name,
                     description = c.Description
-                };            
+                };
             return this.Jsonp(data);
         }
 
@@ -76,12 +80,12 @@ namespace BgEngine.Controllers
         }
 
         public JsonpResult GetPost(int postid)
-        {            
+        {
             Post post = this.BlogServices.FindPost(postid);
             if (post.IsPublic)
-            { 
+            {
                 return this.Jsonp(new
-                { 
+                {
                     title = post.Title,
                     description = post.Description,
                     text = post.Text.Replace("../../..", Request.Url.Scheme + "://" + Request.Url.Authority),
@@ -103,6 +107,24 @@ namespace BgEngine.Controllers
                         select new
                         {
                             value = r.Value
+                        },
+                    comments =
+                        from c in post.Comments
+                        where c.IsSpam == false
+                        select new
+                        {
+                            id = c.CommentId,
+                            message = c.Message,
+                            user = c.User != null ? c.User.Username : c.AnonymousUser.Username,
+                            isrelated = c.isRelatedComment,
+                            relatedcomments =
+                                from rc in c.RelatedComments
+                                select new
+                                {
+                                    id = rc.CommentId,
+                                    message = rc.Message,
+                                    user = rc.User != null ? rc.User.Username : rc.AnonymousUser.Username,
+                                }
                         }
                 });
             }
@@ -127,24 +149,33 @@ namespace BgEngine.Controllers
             {
                 source = BlogServices.FindPagedPostsByTag(false, id, pageIndex, 10).Where(p => p.IsPublic);
             }
-            var data =
-                from p in source
-                select new
-                {
-                    postid = p.PostId,
-                    title = p.Title,
-                    description = p.Description,
-                    commentscount = p.Comments.Count<Comment>(),
-                    date = p.DateCreated.ToShortDateString(),
-                    category = p.Category.Name,
-                    thumbnailpath = getImageUrl(p.Image),
-                    user = p.User.Username
-                };
+            var data = new
+            {
+                posts =
+                    from p in source
+                    select new
+                    {
+                        postid = p.PostId,
+                        title = p.Title,
+                        description = p.Description,
+                        commentscount = p.Comments.Count<Comment>(),
+                        date = p.DateCreated.ToShortDateString(),
+                        category = p.Category.Name,
+                        thumbnailpath = getImageUrl(p.Image),
+                        user = p.User.Username
+                    },
+                pendingposts = source.Count() == 10 ? true : false
+            };
             return this.Jsonp(data);
         }
 
         public JsonpResult SearchPosts(string searchstring, int? page)
         {
+            if (String.IsNullOrEmpty(searchstring))
+            {
+                return this.Jsonp(new { });
+            }
+
             var pageIndex = page ?? 0;
             IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, Int32.Parse(BgResources.Pager_HomeIndexPostsPerPage), p => p.DateCreated, false).Where(p => p.IsPublic && (p.Title.ToLower().Contains(searchstring.ToLower()) || p.Description.ToLower().Contains(searchstring.ToLower())));
             var data =
@@ -165,7 +196,7 @@ namespace BgEngine.Controllers
 
 
         private string getImageUrl(Image image)
-        {            
+        {
             if (image == null)
             {
                 return " ";
