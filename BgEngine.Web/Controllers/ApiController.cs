@@ -30,7 +30,7 @@ namespace BgEngine.Controllers
         public JsonpResult GetPosts(int? page)
         {
             var pageIndex = page ?? 0;
-            IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, 10, p => p.DateCreated, false).Where(p => p.IsPublic);
+            IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, 10, p => p.DateCreated, false).Where(p => p.IsPublic && p.IsAboutMe == false);
             var data = new
             {
                 posts =
@@ -110,7 +110,7 @@ namespace BgEngine.Controllers
                         },
                     comments =
                         from c in post.Comments
-                        where c.IsSpam == false
+                        where ((c.IsSpam == false) && (c.isRelatedComment == false))
                         select new
                         {
                             id = c.CommentId,
@@ -119,6 +119,7 @@ namespace BgEngine.Controllers
                             isrelated = c.isRelatedComment,
                             relatedcomments =
                                 from rc in c.RelatedComments
+                                where (rc.IsSpam == false)
                                 select new
                                 {
                                     id = rc.CommentId,
@@ -143,11 +144,11 @@ namespace BgEngine.Controllers
             IEnumerable<Post> source;
             if (by == "category")
             {
-                source = BlogServices.FindPagedPostsByCategory(false, id, pageIndex, 10).Where(p => p.IsPublic);
+                source = BlogServices.FindPagedPostsByCategory(false, id, pageIndex, 10).Where(p => p.IsPublic && p.IsAboutMe == false);
             }
             else
             {
-                source = BlogServices.FindPagedPostsByTag(false, id, pageIndex, 10).Where(p => p.IsPublic);
+                source = BlogServices.FindPagedPostsByTag(false, id, pageIndex, 10).Where(p => p.IsPublic && p.IsAboutMe == false);
             }
             var data = new
             {
@@ -177,20 +178,24 @@ namespace BgEngine.Controllers
             }
 
             var pageIndex = page ?? 0;
-            IEnumerable<Post> source = this.PostServices.RetrievePaged(pageIndex, Int32.Parse(BgResources.Pager_HomeIndexPostsPerPage), p => p.DateCreated, false).Where(p => p.IsPublic && (p.Title.ToLower().Contains(searchstring.ToLower()) || p.Description.ToLower().Contains(searchstring.ToLower())));
-            var data =
-                from p in source
-                select new
-                {
-                    postid = p.PostId,
-                    title = p.Title,
-                    description = p.Description,
-                    commentscount = p.Comments.Count<Comment>(),
-                    date = p.DateCreated.ToShortDateString(),
-                    category = p.Category.Name,
-                    thumbnailpath = getImageUrl(p.Image),
-                    user = p.User.Username
-                };
+            IEnumerable<Post> source = this.BlogServices.SearchForPagedPostsByParam(pageIndex, 10, p => p.DateCreated, false, searchstring).Where(p => p.IsPublic && !p.IsAboutMe);
+            var data = new
+            {
+                posts = from p in source
+                        select new
+                        {
+                            postid = p.PostId,
+                            title = p.Title,
+                            description = p.Description,
+                            commentscount = p.Comments.Count<Comment>(),
+                            date = p.DateCreated.ToShortDateString(),
+                            category = p.Category.Name,
+                            thumbnailpath = getImageUrl(p.Image),
+                            user = p.User.Username
+                        },
+                pendingposts = source.Count() == 10 ? true : false
+
+            };
             return this.Jsonp(data);
         }
 
