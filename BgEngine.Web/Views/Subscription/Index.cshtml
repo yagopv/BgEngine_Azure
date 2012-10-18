@@ -68,6 +68,10 @@
                     <input type="checkbox" id="checkbox-4" data-column="4" />
                     <span>@Resources.AppMessages.DateCreated</span>
                 </div>            
+                <div class="multiselect-check">
+                    <input type="checkbox" id="checkbox-5" data-column="5" data-default="true" />
+                    <span>@Resources.AppMessages.Subscription_Type</span>
+                </div>                        
             </div>            
         </div>    
 
@@ -78,7 +82,8 @@
                 grid.Column("SubscriberName", header: Resources.AppMessages.Name , canSort:true),
                 grid.Column("SubscriberEmail",header:Resources.AppMessages.User_Mail, canSort:true),
                 grid.Column("IsConfirmed",header:Resources.AppMessages.IsConfirmed, canSort:true, format:@<span>@(item.IsConfirmed ? Resources.AppMessages.Yes : Resources.AppMessages.No)</span>),
-                grid.Column("DateCreated",header:Resources.AppMessages.DateCreated, canSort:true),
+                grid.Column("DateCreated",header:Resources.AppMessages.DateCreated, canSort:true), 
+                grid.Column("SubscriptionType",header:Resources.AppMessages.Subscription_Type, canSort:false, format:@<span>@Resources.AppMessages.Newsletters</span>), 
                 grid.Column("", header:Resources.AppMessages.Actions, 
                                 format: @<span class="options">
                                             @Html.ActionLink(Resources.AppMessages.Edit, "Edit", new { id = item.SubscriptionId }, new { @class = "bg-button-grid-edit tooltip" })
