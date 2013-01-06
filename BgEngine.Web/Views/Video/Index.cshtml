@@ -61,7 +61,7 @@
 			    @foreach (var modelitem in Model)
 			    {
 				    <div class="video-container ui-widget ui-corner-all ui-state-default ui-helper-padding">
-					    <h2 class="video-header tooltip" title="@modelitem.Name">@modelitem.Nam)</h2>
+					    <h2 class="video-header tooltip" title="@modelitem.Name">@modelitem.Name)</h2>
                         @if (String.IsNullOrEmpty(modelitem.Description))
                         { 
                             <p class="video-description ui-helper-margin-left-right tooltip ui-helper-padding" title="@modelitem.Name">@Html.Raw(modelitem.Name)</p>
