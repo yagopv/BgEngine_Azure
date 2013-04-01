@@ -20,6 +20,10 @@
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,8 +91,9 @@
     <Reference Include="Mvc.Mailer">
       <HintPath>..\packages\MvcMailer.1.1\lib\40\Mvc.Mailer.dll</HintPath>
     </Reference>
-    <Reference Include="NotFoundMvc">
-      <HintPath>..\packages\NotFoundMvc.0.2.0\lib\net40\NotFoundMvc.dll</HintPath>
+    <Reference Include="NotFoundMvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NotFoundMvc.1.0.0\lib\net40\NotFoundMvc.dll</HintPath>
     </Reference>
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.2.1.0\lib\40\PagedList.dll</HintPath>

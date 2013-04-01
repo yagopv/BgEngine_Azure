@@ -47,8 +47,8 @@ namespace BgEngine.Controllers
         // GET: /Image/
         [Authorize(Roles = "Admin")]
         [HandleError(View = "MissedArgumentError", ExceptionType = typeof(ArgumentException))]
-        public ViewResult Index(int? id)
-        {
+        public ActionResult Index(int? id)
+        {            
             Album album = AlbumServices.FindEntityByIdentity(id);
             if (album == null)
             {
